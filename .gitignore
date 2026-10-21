@@ -13,3 +13,8 @@ coverage/
 .idea/
 .claude/
 waterLevelServer/waterLevelServer
+secrets.h
+build/
+*.bin
+*.elf
+*.hex

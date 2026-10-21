@@ -15,3 +15,5 @@ A React + Go water-monitoring dashboard with JWT authentication and role-based a
 ![Pump status and start/stop controls](docs/images/pump-control.png)
 
 [Authentication code walkthrough](docs/authentication-walkthrough.md)
+
+[Ultrasonic sensor firmware](firmware/README.md)
