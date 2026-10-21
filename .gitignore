@@ -1,0 +1,15 @@
+node_modules/
+dist/
+bin/
+data/
+.env
+.env.*
+!.env.example
+*.log
+*.test
+coverage/
+.DS_Store
+.vscode/
+.idea/
+.claude/
+waterLevelServer/waterLevelServer

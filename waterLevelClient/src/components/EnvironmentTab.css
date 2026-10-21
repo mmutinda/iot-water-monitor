@@ -1,0 +1,259 @@
+.environment-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.environment-header,
+.environment-history {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 18px 32px var(--shadow);
+}
+
+.environment-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+}
+
+.environment-header h2 {
+  margin-top: 3px;
+  font-size: 1.35rem;
+}
+
+.environment-header p {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.environment-eyebrow,
+.environment-metric-label {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.environment-sensor-select {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.environment-sensor-select label {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.environment-sensor-select select,
+.environment-controls select {
+  background: var(--overlay-xs);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+
+.environment-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.environment-metric {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 150px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 12px 28px var(--shadow);
+}
+
+.environment-metric-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.environment-metric.temperature .environment-metric-icon {
+  background: linear-gradient(135deg, #ff7a45, #ef4444);
+}
+
+.environment-metric.humidity .environment-metric-icon {
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+}
+
+.environment-metric > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.environment-metric strong {
+  font-size: clamp(1.8rem, 5vw, 2.65rem);
+  line-height: 1;
+}
+
+.environment-metric small {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.environment-metric.low,
+.environment-metric.high {
+  border-color: var(--status-error-border);
+}
+
+.environment-history {
+  padding: 20px;
+}
+
+.environment-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.environment-history-header h3 {
+  margin-top: 3px;
+}
+
+.environment-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.environment-controls button {
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 14px;
+  background: #3399ff;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.environment-controls button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.environment-chart-wrap {
+  position: relative;
+}
+
+.environment-chart {
+  width: 100%;
+  height: auto;
+}
+
+.environment-grid-line {
+  stroke: var(--overlay-sm);
+  stroke-width: 1;
+}
+
+.environment-chart-line {
+  fill: none;
+  stroke: #f97316;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.environment-chart.humidity .environment-chart-line {
+  stroke: #3b82f6;
+}
+
+.environment-y-labels,
+.environment-x-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.environment-y-labels {
+  position: absolute;
+  top: 16px;
+  bottom: 32px;
+  left: 0;
+  flex-direction: column;
+}
+
+.environment-x-labels {
+  padding: 0 24px 0 54px;
+}
+
+.environment-centered,
+.environment-empty,
+.environment-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 160px;
+  color: var(--text-muted);
+}
+
+.environment-error {
+  min-height: auto;
+  padding: 16px;
+  color: var(--status-error-text);
+  background: var(--status-error-bg);
+  border: 1px solid var(--status-error-border);
+  border-radius: 10px;
+}
+
+@media (max-width: 640px) {
+  .environment-header,
+  .environment-history-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .environment-sensor-select {
+    min-width: 0;
+  }
+
+  .environment-metrics {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .environment-metric {
+    min-height: 125px;
+    padding: 18px;
+  }
+
+  .environment-history {
+    padding: 16px 12px;
+  }
+
+  .environment-controls select,
+  .environment-controls button {
+    flex: 1 1 30%;
+    min-width: 0;
+  }
+}

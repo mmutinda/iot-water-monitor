@@ -1,0 +1,398 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --text: #e6edf3;
+  --text-muted: #7d8590;
+
+  /* overlay / border tokens */
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --overlay-xs: rgba(255, 255, 255, 0.04);
+  --overlay-sm: rgba(255, 255, 255, 0.08);
+  --overlay-md: rgba(255, 255, 255, 0.1);
+  --overlay-lg: rgba(255, 255, 255, 0.2);
+  --shadow: rgba(0, 0, 0, 0.35);
+
+  /* pump / status badge tokens */
+  --status-success-bg: rgba(16, 185, 129, 0.15);
+  --status-success-text: #34d399;
+  --status-success-border: rgba(16, 185, 129, 0.3);
+  --status-error-bg: rgba(239, 68, 68, 0.15);
+  --status-error-text: #f87171;
+  --status-error-border: rgba(239, 68, 68, 0.3);
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --text: #1a1f2e;
+  --text-muted: #6b7280;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --overlay-xs: rgba(0, 0, 0, 0.03);
+  --overlay-sm: rgba(0, 0, 0, 0.05);
+  --overlay-md: rgba(0, 0, 0, 0.08);
+  --overlay-lg: rgba(0, 0, 0, 0.12);
+  --shadow: rgba(0, 0, 0, 0.12);
+
+  --status-success-bg: #d1fae5;
+  --status-success-text: #065f46;
+  --status-success-border: #6ee7b7;
+  --status-error-bg: #fee2e2;
+  --status-error-text: #991b1b;
+  --status-error-border: #fca5a5;
+
+  color-scheme: light;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.app-header {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.role-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.role-badge.is-admin {
+  background: var(--status-success-bg, #dcfce7);
+  color: var(--status-success-text, #166534);
+}
+
+.role-badge.is-viewer {
+  background: var(--overlay-md);
+  color: var(--text-muted);
+}
+
+.logout-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--overlay-md);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.logout-btn:hover {
+  color: var(--text);
+  border-color: var(--overlay-lg);
+}
+
+.theme-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--overlay-md);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.theme-btn:hover {
+  color: var(--text);
+  border-color: var(--overlay-lg);
+}
+
+.app-header h1 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Main content area */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 30px 20px;
+  width: 100%;
+  max-width: 960px;
+  transition: max-width 0.2s ease;
+}
+
+.app-main.monitor-mode {
+  max-width: 1024px;
+}
+
+.app-main.charts-mode {
+  max-width: 1024px;
+}
+
+.app-main.environment-mode {
+  max-width: 1024px;
+}
+
+.app-main.config-mode {
+  max-width: 960px;
+}
+
+.monitor-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tab-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: var(--overlay-xs);
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.tab-buttons {
+  display: flex;
+  flex: 1;
+  gap: 12px;
+}
+
+.tab-button {
+  flex: 1;
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.tab-button.is-active {
+  background: #3399ff;
+  color: #fff;
+}
+
+.tab-button:not(.is-active):hover {
+  color: #e6edf3;
+}
+
+.tank-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 120px;
+}
+
+.tank-selector label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.tank-selector select {
+  background: var(--overlay-xs);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+.tank-selector select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tank-selector.is-hidden {
+  display: none;
+}
+
+/* Tank section */
+.tank-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Loading state */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 0;
+  color: var(--text-muted);
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--overlay-md);
+  border-top-color: #3399ff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error state */
+.error-card {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 68, 68, 0.08);
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  border-radius: 12px;
+  width: 100%;
+}
+
+.error-card p {
+  margin-bottom: 8px;
+}
+
+.error-detail {
+  font-size: 0.85rem;
+  color: #ff6666;
+  font-family: monospace;
+}
+
+.error-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.error-hint code {
+  background: var(--overlay-sm);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* Connection warning (stale data) */
+.connection-warning {
+  font-size: 0.8rem;
+  color: #ff8c00;
+  background: rgba(255, 140, 0, 0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+/* Footer */
+.app-footer {
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--overlay-xs);
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive — the tab bar packs 5 tabs + the tank selector into one row, which
+   overflows on phones. Stack the selector under the tabs and let the tabs wrap.
+   --------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .app-header {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .app-header h1 {
+    font-size: 1.1rem;
+  }
+
+  .app-main {
+    padding: 18px 12px;
+    gap: 16px;
+  }
+
+  .tab-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .tab-buttons {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ~3 tabs per row, growing to fill the last row */
+  .tab-button {
+    flex: 1 1 calc(33.333% - 6px);
+    min-width: 0;
+    padding: 9px 6px;
+    font-size: 0.82rem;
+  }
+
+  /* Selector sits full-width below the tabs, label beside the control */
+  .tank-selector {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .tank-selector select {
+    flex: 1;
+  }
+}
+
+@media (max-width: 380px) {
+  .tab-button {
+    flex-basis: calc(50% - 4px); /* 2 per row on very small screens */
+    font-size: 0.8rem;
+  }
+}

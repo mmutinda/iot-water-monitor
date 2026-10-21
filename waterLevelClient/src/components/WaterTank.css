@@ -1,0 +1,52 @@
+.tank-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tank-svg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+/* Smooth water height transition */
+.water-body {
+  transition:
+    y 1s ease-in-out,
+    height 1s ease-in-out,
+    fill 0.5s ease;
+}
+
+/* Animated wave scroll */
+.water-wave {
+  animation: waveScroll 2s linear infinite;
+  transition: y 1s ease-in-out;
+}
+
+@keyframes waveScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-80px);
+  }
+}
+
+/* Pulsing level indicator line */
+.level-line {
+  animation: pulse 2s ease-in-out infinite;
+  transition:
+    y1 1s ease-in-out,
+    y2 1s ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}

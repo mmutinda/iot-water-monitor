@@ -1,0 +1,315 @@
+.pump-control-tab {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.pump-control-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.pump-control-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pump-control-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+  color: var(--text);
+}
+
+.pump-control-description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.pump-control-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pump-state-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+}
+
+.pump-state-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #9ca3af;
+  flex-shrink: 0;
+}
+
+.pump-state-indicator.is-on {
+  background: var(--status-success-bg);
+  color: var(--status-success-text);
+  border-color: var(--status-success-border);
+}
+
+.pump-state-indicator.is-on .pump-state-dot {
+  background: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+  animation: pump-pulse 1.6s ease-in-out infinite;
+}
+
+.pump-state-indicator.is-off {
+  background: var(--status-error-bg);
+  color: var(--status-error-text);
+  border-color: var(--status-error-border);
+}
+
+.pump-state-indicator.is-off .pump-state-dot {
+  background: #ef4444;
+}
+
+.pump-state-indicator.is-unknown .pump-state-dot {
+  background: #9ca3af;
+}
+
+/* Controller offline (Last Will) — amber, distinct from the grey "unknown"
+   so a dead relay never reads as a confident on/off. */
+.pump-state-indicator.is-offline {
+  background: var(--status-warning-bg, #fef3c7);
+  color: var(--status-warning-text, #92400e);
+  border-color: var(--status-warning-border, #fcd34d);
+}
+
+.pump-state-indicator.is-offline .pump-state-dot {
+  background: #f59e0b;
+}
+
+@keyframes pump-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+  }
+}
+
+.pump-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.pump-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  max-width: 200px;
+}
+
+.pump-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pump-button-start {
+  background: #10b981;
+  color: white;
+}
+
+.pump-button-start:hover:not(:disabled) {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.pump-button-cancel {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.pump-button-cancel:hover:not(:disabled) {
+  background: var(--border);
+}
+
+.pump-button-stop {
+  background: #ef4444;
+  color: white;
+}
+
+.pump-button-stop:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.pump-keepalive-note {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pump-offline-note {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--status-warning-text, #92400e);
+}
+
+.pump-state-caption {
+  margin: -0.4rem 0 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.pump-readonly-note {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+}
+
+.pump-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--status-error-bg);
+  border: 1px solid var(--status-error-border);
+}
+
+.pump-confirm-text {
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  color: var(--status-error-text);
+}
+
+.pump-confirm-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.pump-status {
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.pump-status.is-success {
+  background: var(--status-success-bg);
+  color: var(--status-success-text);
+  border: 1px solid var(--status-success-border);
+}
+
+.pump-status.is-error {
+  background: var(--status-error-bg);
+  color: var(--status-error-text);
+  border: 1px solid var(--status-error-border);
+}
+
+.pump-settings {
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.pump-settings-toggle {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.4rem;
+  text-align: center;
+}
+
+.pump-settings-toggle:hover {
+  color: var(--text);
+}
+
+.pump-settings-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pump-settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.pump-settings-field select,
+.pump-settings-field input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.pump-settings-field input:disabled,
+.pump-settings-field select:disabled {
+  opacity: 0.5;
+}
+
+.pump-settings-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pump-settings-checkbox input {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+}
+
+.pump-settings-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.25rem 0;
+}
+
+.pump-settings-hint {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}

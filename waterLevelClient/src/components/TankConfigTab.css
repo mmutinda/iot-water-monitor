@@ -1,0 +1,86 @@
+.tank-config-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 32px var(--shadow);
+}
+
+.tank-config-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.tank-config-toolbar h2 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.tank-config-toolbar p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.tank-config-error {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+}
+
+.tank-config-loading,
+.tank-config-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.tank-config-table-wrapper {
+  overflow-x: auto;
+}
+
+.tank-config-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.tank-config-table th,
+.tank-config-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--overlay-sm);
+  white-space: nowrap;
+}
+
+.tank-config-table thead th {
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.tank-config-table tbody tr:hover {
+  background: var(--overlay-xs);
+}
+
+.tank-error {
+  color: #ff6666;
+  font-size: 0.75rem;
+}
